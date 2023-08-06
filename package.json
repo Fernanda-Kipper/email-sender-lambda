@@ -1,0 +1,22 @@
+{
+  "name": "email-sender-lambda",
+  "version": "1.0.0",
+  "description": "send emails",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fernanda-Kipper/email-sender-lambda.git"
+  },
+  "author": "Fernanda Kipper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Fernanda-Kipper/email-sender-lambda/issues"
+  },
+  "homepage": "https://github.com/Fernanda-Kipper/email-sender-lambda#readme",
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0"
+  }
+}
