@@ -1,8 +1,29 @@
+const sgMail = require('@sendgrid/mail')
+
 export const handler = async(event) => {
-    console.log(event);
- 
-    return {
-        statusCode: 200,
-        body: 'Image resized successfully',
-    };
+    let email = event?.body?.email
+
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    const msg = {
+        to: email,
+        from: process.env.SENDGRID_SENDER_EMAIL, // Mude para seu email verificado no sendgrid
+        subject: 'Sending with SendGrid is Fun',
+        text: 'and easy to do anywhere, even with Node.js',
+        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    }
+    sgMail
+    .send(msg)
+    .then(() => {
+        return {
+            statusCode: 200,
+            body: 'Email enviado',
+        };
+    })
+    .catch((error) => {
+        console.error(error);
+        return {
+            statusCode: 500,
+            body: 'Erro ao enviar email',
+        };
+    })
 };
