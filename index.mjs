@@ -9,7 +9,10 @@ export const handler = async(event) => {
         body: 'Email was not provided',
     };
 
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+    console.log(process.env.SENDGRID_API_KEY)
+    console.log(process.env.SENDGRID_SENDER_EMAIL)
 
     const msg = {
         to: email,
