@@ -1,4 +1,4 @@
-const sgMail = require('@sendgrid/mail')
+import sgMail from '@sendgrid/mail'
 
 export const handler = async(event) => {
     let email = event?.body?.email
