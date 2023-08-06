@@ -4,6 +4,8 @@ export const handler = async(event) => {
     let email = event?.body?.email
 
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+    console.log(process.env.SENDGRID_API_KEY, email)
+
     const msg = {
         to: email,
         from: process.env.SENDGRID_SENDER_EMAIL, // Mude para seu email verificado no sendgrid
@@ -16,14 +18,11 @@ export const handler = async(event) => {
     .then(() => {
         return {
             statusCode: 200,
-            body: 'Email enviado',
+            body: 'E-mail enviado',
         };
     })
     .catch((error) => {
         console.error(error);
-        return {
-            statusCode: 500,
-            body: 'Erro ao enviar email',
-        };
+        throw new Error("Erro ao enviar e-mail")
     })
 };
