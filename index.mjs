@@ -1,10 +1,15 @@
 import sgMail from '@sendgrid/mail'
 
 export const handler = async(event) => {
-    let email = event?.body?.email
+    let body = JSON.parse(event.body)
+    let email = body?.email
+
+    if(!email) return {
+        statusCode: 200,
+        body: 'Email was not provided',
+    };
 
     sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-    console.log(process.env.SENDGRID_API_KEY, email)
 
     const msg = {
         to: email,
@@ -18,11 +23,11 @@ export const handler = async(event) => {
     .then(() => {
         return {
             statusCode: 200,
-            body: 'E-mail enviado',
+            body: 'Email sent!',
         };
     })
     .catch((error) => {
         console.error(error);
-        throw new Error("Erro ao enviar e-mail")
+        throw new Error("Error while sending email")
     })
 };
